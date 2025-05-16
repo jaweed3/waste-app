@@ -109,10 +109,12 @@ class WasteClassifierApp:
                 
                 else:
                     error_msg = response.json().get('error', 'unknown error')
-                    self.result_label.config(text=f'Error in predicting the result : {e}')
+                    self.result_label.config(text=f"Error Message : {error_msg}")
+                    self.status_label.config(text=f"Error During Classification")
 
         except Exception as e:
             self.result_label.config(text=f"Error in Sending API to Flask : {e}")
+            self.status_label.config(text="Error During Classification")
 
 def main():
     root = tk.Tk()
