@@ -6,12 +6,12 @@ chmod +x serving.py
 # Checking if the model Exist or not
 if [! -d "./waste_classifier" ]; then
     echo "Saving model in SavedModel Format..."
-    python3 save_model.py
+    python3 components/save_model.py
 fi
 
 # Starting Tensorflow Serving in the background
 echo "Starting Tensorflow Serving...."
-./serving.sh
+./components/serving.sh
 TF_SERVING_PID=$!
 
 # Wait for TF Serving to start
@@ -20,7 +20,7 @@ sleep 5
 
 # Start Flask App in the background
 echo "Starting Flask API....."
-python3 app.py &
+python3 components/app.py &
 FLASK_PID=$!
 
 # Waiting for Flask API
@@ -29,7 +29,7 @@ sleep 3
 
 # Starting the GUI
 echo "Starting the GUI...."
-python3 gui.py
+python3 components/gui.py
 
 # When GUI Closes, Clean Up!
 echo "Shutting Down..."

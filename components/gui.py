@@ -8,7 +8,7 @@ class WasteClassifierApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Waste Classifier")
-        self.root.geometry("560x500")
+        self.root.geometry("560x600")
         
         # Main Frame
         main_frame = Frame(root)
@@ -64,12 +64,13 @@ class WasteClassifierApp:
         self.status_label.pack(side=tk.BOTTOM, fill=tk.X)
 
     def image_uploader(self):
-        file_types = [("Image Files", "*.png;*.jpeg;*.jpg")]
-        path = filedialog.askopenfile(filetypes=file_types)
+        file_types = [("All Image Files", "*.png *.jpg *.jpeg")]
+        path = filedialog.askopenfilename(filetypes=file_types)
+        full_path = os.path.basename(path)
 
         # If a file is selected
         if path:
-            self.status_label.config(text=f"Selected: {os.path.basename(path)}")
+            self.status_label.config(text=f"Selected: {full_path}")
 
             # Display the Image
             img = Image.open(path)

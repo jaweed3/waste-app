@@ -46,7 +46,7 @@ def predict():
     
     try:
         # Preprocess the Image
-        img_array = preprocess_image()
+        img_array = preprocess_image(image_file)
 
         # Prepare data for TF Serving
         data = json.dumps({
